@@ -407,14 +407,14 @@ body {
 /* ✅ Mobile adjustments */
 @media (max-width: 780px) {
   .scroll-widget {
-    max-width: 30%;   /* ✅ Fixed: was missing px */
+    max-width: 80%;   /* ✅ Fixed: was missing px */
     gap: 20px;
     padding: 20px;
   }
 
   .item {
-    min-width: 180px;
-    height: 120px;
+  width: 12.6vh;
+  height: 12.8vh;
   }
 
   .item2 {
