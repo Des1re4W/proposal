@@ -1,34 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector('.scroll-widget');
-  if (!container) return;
+  const scrollWidget = document.querySelector(".scroll-widget");
+  const items = document.querySelectorAll(".item");
+  let isScrolling;
 
-  const items = container.querySelectorAll('.item');
-
-  function updateActiveItem() {
-    const rect = container.getBoundingClientRect();
-    const center = rect.left + rect.width / 2;
-
+  function checkCenterItem() {
+    const center = scrollWidget.scrollLeft + scrollWidget.offsetWidth / 2;
     let closest = null;
-    let minDist = Infinity;
+    let closestDistance = Infinity;
 
     items.forEach(item => {
-      const itemRect = item.getBoundingClientRect();
-      const itemCenter = itemRect.left + itemRect.width / 2;
-      const dist = Math.abs(center - itemCenter);
-      if (dist < minDist) {
-        minDist = dist;
+      const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+      const distance = Math.abs(center - itemCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
         closest = item;
       }
     });
 
-    items.forEach(i => i.classList.remove('active'));
-    if (closest) closest.classList.add('active');
+    items.forEach(item => item.classList.remove("active"));
+    if (closest) closest.classList.add("active");
+
+    return closest;
   }
 
-  container.addEventListener('scroll', () => {
-    requestAnimationFrame(updateActiveItem);
+  function snapToCenter() {
+    const closest = checkCenterItem();
+    if (!closest) return;
+
+    const itemCenter = closest.offsetLeft + closest.offsetWidth / 2;
+    const widgetCenter = scrollWidget.offsetWidth / 2;
+    const scrollTo = itemCenter - widgetCenter;
+
+    scrollWidget.scrollTo({
+      left: scrollTo,
+      behavior: "smooth"
+    });
+  }
+
+  // while scrolling, highlight center item
+  scrollWidget.addEventListener("scroll", () => {
+    window.requestAnimationFrame(checkCenterItem);
+
+    clearTimeout(isScrolling);
+    // when user stops scrolling for 100ms -> snap
+    isScrolling = setTimeout(snapToCenter, 100);
   });
 
-  window.addEventListener('resize', updateActiveItem);
-  updateActiveItem();
+  // initial setup
+  checkCenterItem();
 });
