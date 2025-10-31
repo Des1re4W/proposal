@@ -301,3 +301,38 @@ body {
   font-size: clamp(0.9rem, 1vw + 0.4rem, 1.1rem);
   line-height: 1.6;
 }
+
+/* scroll */
+
+.scroll-widget {
+      display: flex;
+      overflow-x: auto;   /* horizontal scroll */
+      scroll-behavior: smooth;
+      gap: 15px;
+      padding: 15px;
+      margin-bottom: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .item {
+      min-width: 180px; /* width of each item */
+      height: 120px;
+      background-color: #cce0ff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0; /* prevents items from shrinking */
+    }
+
+    /* Optional: scrollbar styling */
+    .scroll-widget::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-widget::-webkit-scrollbar-thumb {
+      background-color: #aaa;
+      border-radius: 4px;
+    }
