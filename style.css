@@ -346,7 +346,6 @@ body {
 /* ✅ SCROLLABLE HORIZONTAL CAROUSEL (HMO) */
 .scroll-widget {
   cursor: grab;
-  overflow-x: scroll !important;
   display: flex;
   overflow-x: auto;               /* horizontal scroll enabled */
   scroll-snap-type: x mandatory;
@@ -355,31 +354,46 @@ body {
   padding: 20px;
   background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 90%;                     /* responsive width */
-  max-width: 1500px;              /* prevent it from getting too wide */
-  margin: 0 auto;                 /* center on page */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  width: 90%;
+  max-width: 1550px;
+  margin: 0 auto;
+  -ms-overflow-style: none;       /* IE/Edge */
+  scrollbar-width: none;          /* Firefox */
 }
-
+.scroll-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  user-select: none; /* prevent text selection while dragging */
+}
 .item {
-  min-width: 180px;               /* each card width */
+  min-width: 180px;
   height: 120px;
+  margin: 5px;
   background: #cce0ff;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  flex-shrink: 0;                 /* prevent squeezing */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s;
   scroll-snap-align: center;
+  user-select: none;      /* no text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  pointer-events: none;   /* makes text untouchable / unclickable */
 }
 
 /* 🔹 Centered Item Highlight */
 .item.active {
-  transform: scale(1.2);
+  transform: scale(1.25);
   background: #b3d1ff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  pointer-events: none; /* keep untouchable while active */
 }
 
 /* Optional: scrollbar styling */
@@ -390,10 +404,22 @@ body {
   background-color: #aaa;
   border-radius: 4px;
 }
-
+.center-pointer {
+  position: absolute;
+  top: 8px;     /* small top offset for aesthetic */
+  bottom: 8px;
+  left: 50%;
+  width: 3px;
+  background: rgba(0,0,0,0.28);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 2px;
+}
 /* Responsive scroll section */
-@media (max-width: 768px) {
+@media (max-width: 780px) {
   .scroll-widget {
+    max-width: 750px;
     gap: 15px;
     padding: 15px;
   }
