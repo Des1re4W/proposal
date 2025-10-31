@@ -360,8 +360,7 @@ body {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 40px;
-  width: 100%;
-  max-width: 100vw;
+  width: 105%;
   cursor: grab;
   scrollbar-width: none;
 }
@@ -432,6 +431,8 @@ body {
   }
 
   .item img {
+    max-height: 100%;
+  max-width: 100%;
     object-fit: contain;
   }
 
