@@ -407,17 +407,22 @@ body {
 /* ✅ Mobile adjustments */
 @media (max-width: 780px) {
   .scroll-widget {
-    max-width: 80%;   /* ✅ Fixed: was missing px */
-    gap: 20px;
-    padding: 20px;
+    max-width: 92%;          /* slightly smaller for phone padding */
+    gap: 16px;               /* tighter gaps for smaller screens */
+    padding: 18px;
   }
 
   .item {
-  width: 12.6vh;
-  height: 12.8vh;
+    width: 45vw;             /* roughly 2 items visible per screen */
+    height: 26vw;            /* balanced height */
+  }
+
+  .item.active {
+    transform: scale(1.3);   /* scale less aggressively on mobile */
   }
 
   .item2 {
-    flex: 0 0 40vw; /* smaller side padding on phones */
+    flex: 0 0 35vw;          /* just enough to center first and last items */
   }
 }
+
