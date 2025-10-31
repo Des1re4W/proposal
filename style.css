@@ -76,7 +76,7 @@ body {
   display: none;
 }
 
-/* ✅ SERVICES SECTION */
+/* SERVICES SECTION */
 .services {
   text-align: center;
   padding: 4rem 2rem;
@@ -400,12 +400,12 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* ✅ Add proper side spacing for centering first/last item */
+/*  Add proper side spacing for centering first/last item */
 .item2 {
   flex: 0 0 50vw;
 }
 
-/* ✅ Mobile adjustments */
+/*  Mobile adjustments */
 @media (max-width: 1085px) {
   .scroll-widget {
     max-width: 92%;

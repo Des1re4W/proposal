@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollWidget.scrollLeft = scrollLeft - walk;
   });
 
-  // ✅ Wait for ALL images to load before centering
+  // Wait for ALL images to load before centering
   window.addEventListener("load", () => {
     setTimeout(() => {
       const firstItem = items[0];
