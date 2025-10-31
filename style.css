@@ -349,7 +349,7 @@ body {
   /* aligns items in a row (left → right) */
   overflow-x: auto;
   /* enables horizontal scrolling */
-    width: 3000px;
+    max-width: 200px;
     overflow: hidden;
      max-height:100px;
     -webkit-box-shadow: 0px -1px 12px rgba(0, 0, 0, 0.48);
