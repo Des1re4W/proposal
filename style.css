@@ -386,8 +386,9 @@ body {
 }
 
 .item.active {
-  transform: scale(1.4);
+  transform: scale(1.6);
   background: #b3d1ff;
+  overflow: auto;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
