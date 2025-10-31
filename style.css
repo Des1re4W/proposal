@@ -346,20 +346,21 @@ body {
 /* ✅ SCROLLABLE HORIZONTAL CAROUSEL (HMO) */
 .scroll-widget {
   display: flex;
-  overflow-x: auto;               /* enables horizontal scroll */
-  scroll-snap-type: x mandatory;  /* smooth snapping */
+  overflow-x: auto;               /* horizontal scroll enabled */
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   gap: 20px;
   padding: 20px;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-  justify-content: flex-start;
+  width: 90%;                     /* responsive width */
+  max-width: 1200px;              /* prevent it from getting too wide */
+  margin: 0 auto;                 /* center on page */
 }
 
 .item {
-  min-width: 160px;               /* each item’s base width */
+  min-width: 180px;               /* each card width */
   height: 120px;
   background: #cce0ff;
   border-radius: 12px;
@@ -367,7 +368,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  flex-shrink: 0;                 /* prevents shrinking */
+  flex-shrink: 0;                 /* prevent squeezing */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   scroll-snap-align: center;
 }
