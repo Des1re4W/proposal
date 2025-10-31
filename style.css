@@ -341,34 +341,31 @@ body {
   font-size: clamp(0.9rem, 1vw + 0.4rem, 1.1rem);
   line-height: 1.6;
 }
-
 .scroll-wrapper {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: visible; /* ✅ allow horizontal scrolling */
+  overflow: visible; /* allow horizontal scrolling */
   user-select: none;
 }
-
 
 .scroll-widget {
   display: flex;
   gap: 40px;
- overflow-x: scroll;       /* ✅ allows horizontal scroll */
-  overflow-y: hidden;       /* prevent vertical scroll */
+  overflow-x: scroll;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 40px;
   width: 100%;
-  max-width: 100vw;         /* ✅ full width of screen */
+  max-width: 100vw;
   cursor: grab;
-  scrollbar-width: none;    /* ✅ hide scrollbar in Firefox */
+  scrollbar-width: none;
 }
 
 .scroll-widget::-webkit-scrollbar {
-  display: none;
-  /* Chrome/Safari */
+  display: none; /* Hide scrollbar */
 }
 
 .item {
@@ -386,46 +383,40 @@ body {
   scroll-snap-align: center;
   flex-shrink: 0;
 }
+
 .item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;          /* fills the entire div without distortion */
+  object-fit: contain;
   border-radius: 12px;
-  pointer-events: none;       /* disables text/image selection */
+  pointer-events: none;
   user-select: none;
 }
+
 .item.active {
-  transform: scale(1.6);
-  background: #ffffff;
-  overflow: auto;
+  transform: scale(1.4);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.center-pointer {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  background: rgba(0, 0, 0, 0.2);
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 10;
-}
-
+/* ✅ Add proper side spacing for centering first/last item */
 .item2 {
-  flex: 0 0 50vw; /* Half the viewport width — gives space to center first/last items */
+  flex: 0 0 50vw;
 }
 
+/* ✅ Mobile adjustments */
 @media (max-width: 780px) {
   .scroll-widget {
-    max-width: 750;
-    gap: 15px;
-    padding: 15px;
+    max-width: 100vw;   /* ✅ Fixed: was missing px */
+    gap: 20px;
+    padding: 20px;
   }
 
   .item {
-    min-width: 140px;
-    height: 100px;
+    min-width: 180px;
+    height: 120px;
+  }
+
+  .item2 {
+    flex: 0 0 40vw; /* smaller side padding on phones */
   }
 }
