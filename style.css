@@ -323,7 +323,7 @@ body {
       border-radius: 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       font-weight: bold;
       flex-shrink: 0; /* prevents items from shrinking */
     }
