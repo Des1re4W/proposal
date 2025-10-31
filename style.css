@@ -372,8 +372,8 @@ body {
 }
 
 .item {
-  min-width: 26vh;
-  height: 200px;
+  min-width: 15vh;
+  height: 15vh;
   margin: 25px;
   background: #ffffff;
   border-radius: 12px;
@@ -388,7 +388,7 @@ body {
 }
 
 .item img {
-  width: 12.6vh;
+  width: 10.6vh;
   height: 12.8vh;
   object-fit: contain;
   border-radius: 12px;
@@ -418,7 +418,7 @@ body {
   }
 
   .item {
-    width: 22vw;
+    width: 5vw;
     /* more compact card width */
     height: 22vw;
     /* balanced height */
