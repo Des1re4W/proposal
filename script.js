@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll(".item");
   let isScrolling;
 
+  if (!scrollWidget || items.length === 0) return;
+
   function checkCenterItem() {
     const center = scrollWidget.scrollLeft + scrollWidget.offsetWidth / 2;
     let closest = null;
@@ -19,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     items.forEach(item => item.classList.remove("active"));
     if (closest) closest.classList.add("active");
-
     return closest;
   }
 
@@ -37,15 +38,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // while scrolling, highlight center item
+  // scroll event
   scrollWidget.addEventListener("scroll", () => {
     window.requestAnimationFrame(checkCenterItem);
-
     clearTimeout(isScrolling);
-    // when user stops scrolling for 100ms -> snap
-    isScrolling = setTimeout(snapToCenter, 100);
+    isScrolling = setTimeout(snapToCenter, 150);
   });
 
-  // initial setup
-  checkCenterItem();
+  // mouse drag scroll
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  scrollWidget.addEventListener("mousedown", (e) => {
+    isDown = true;
+    scrollWidget.classList.add("grabbing");
+    startX = e.pageX - scrollWidget.offsetLeft;
+    scrollLeft = scrollWidget.scrollLeft;
+  });
+
+  scrollWidget.addEventListener("mouseleave", () => (isDown = false));
+  scrollWidget.addEventListener("mouseup", () => (isDown = false));
+
+  scrollWidget.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollWidget.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    scrollWidget.scrollLeft = scrollLeft - walk;
+  });
+
+  // ✅ Wait for ALL images to load before centering
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const firstItem = items[0];
+      const itemCenter = firstItem.offsetLeft + firstItem.offsetWidth / 2;
+      const widgetCenter = scrollWidget.offsetWidth / 2;
+      scrollWidget.scrollLeft = itemCenter - widgetCenter;
+      checkCenterItem();
+    }, 300); // slight delay ensures layout & images are ready
+  });
 });
