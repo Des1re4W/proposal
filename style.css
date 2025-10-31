@@ -406,7 +406,7 @@ body {
 }
 
 /* ✅ Mobile adjustments */
-@media (max-width: 780px) {
+@media (max-width: 1080px) {
   .scroll-widget {
     max-width: 92%;
     gap: 14px;
